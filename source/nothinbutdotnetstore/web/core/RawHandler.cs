@@ -4,9 +4,18 @@ namespace nothinbutdotnetstore.web.core
 {
     public class RawHandler : IHttpHandler
     {
-        public void ProcessRequest(HttpContext context)
+		IProcessWebRequests processor;
+    	ICreateRequestsTheFrontControllerCanProcess mapper;
+
+    	public RawHandler(IProcessWebRequests processor, ICreateRequestsTheFrontControllerCanProcess mapper)
+    	{
+    		this.processor = processor;
+    		this.mapper = mapper;
+    	}
+
+    	public void ProcessRequest(HttpContext context)
         {
-            throw new System.NotImplementedException();
+			processor.process(mapper.map_from(context));
         }
 
         public bool IsReusable
