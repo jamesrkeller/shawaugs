@@ -45,5 +45,10 @@ namespace nothinbutdotnetstore.specs
             static IProcessOneSpecificRequest result;
             static IContainRequestInformation request;
         }
+
+		public class and_it_has_the_command : when_finding_a_command_that_can_process_a_request
+		{
+			
+		}
     }
 }
