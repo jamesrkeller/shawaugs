@@ -46,7 +46,7 @@ namespace nothinbutdotnetstore.specs
             static IContainRequestInformation request;
         }
 
-		public class and_it_has_the_command : when_finding_a_command_that_can_process_a_request
+		public class and_it_does_not_have_the_command : when_finding_a_command_that_can_process_a_request
 		{
 			
 		}
