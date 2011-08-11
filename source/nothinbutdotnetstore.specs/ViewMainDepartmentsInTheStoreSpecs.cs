@@ -50,7 +50,7 @@ namespace nothinbutdotnetstore.specs
 			Because b = () =>
 				sut.process(request);
 
-			It should_ask_the_department_repository_for_the_main_departments = () =>
+			It should_send_departments_to_view = () =>
 			{
 				view_data.ShouldNotBeNull();
 				(view_data as IEnumerable<Department>).Count().ShouldEqual(10);
