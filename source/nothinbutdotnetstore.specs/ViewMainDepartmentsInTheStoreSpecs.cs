@@ -51,10 +51,7 @@ namespace nothinbutdotnetstore.specs
 				sut.process(request);
 
 			It should_send_departments_to_view = () =>
-			{
-				view_data.ShouldNotBeNull();
-				(view_data as IEnumerable<Department>).Count().ShouldEqual(10);
-			};
+				view_data.ShouldBeAn<IEnumerable<Department>>().Count().ShouldEqual(10);
 
 			static IContainRequestInformation request;
 			static IReturnDepartments department_repository;
