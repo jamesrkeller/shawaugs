@@ -1,4 +1,7 @@
-﻿using developwithpassion.specifications.extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using nothinbutdotnetstore.web.application;
@@ -32,5 +35,30 @@ namespace nothinbutdotnetstore.specs
             static IContainRequestInformation request;
             static IReturnDepartments department_repository;
         }
+
+		public class when_providing_view_with_data : concern
+		{
+			Establish c = () =>
+			{
+				department_repository = depends.on<IReturnDepartments>();
+				depends.on<Action<object>>(x => view_data = x);
+				request = fake.an<IContainRequestInformation>();
+
+				department_repository.setup(x => x.get_the_main_departments_in_the_store()).Return(() => Enumerable.Range(1, 10).Select(x => new Department()));
+			};
+
+			Because b = () =>
+				sut.process(request);
+
+			It should_ask_the_department_repository_for_the_main_departments = () =>
+			{
+				view_data.ShouldNotBeNull();
+				(view_data as IEnumerable<Department>).Count().ShouldEqual(10);
+			};
+
+			static IContainRequestInformation request;
+			static IReturnDepartments department_repository;
+			static object view_data;
+		}
     }
 }
