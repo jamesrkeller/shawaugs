@@ -92,7 +92,7 @@ namespace nothinbutdotnetstore.specs
                 };
 
                 static IDependencyToFetch result;
-                static Dictionary<Type, ICreateASingleDependency> all_dependencies;
+                static IDictionary<Type, ICreateASingleDependency> all_dependencies;
                 static IDependencyToFetch the_item;
                 static ICreateASingleDependency the_single_dependency_factory;
                 static Exception inner_exception;
