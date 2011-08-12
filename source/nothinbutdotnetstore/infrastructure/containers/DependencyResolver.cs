@@ -14,7 +14,7 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public Dependency an<Dependency>()
         {
-            throw new NotImplementedException();
+            return ((Dependency)factories[typeof(Dependency)].create());
         }
     }
 }

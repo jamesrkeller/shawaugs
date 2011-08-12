@@ -18,8 +18,9 @@ namespace nothinbutdotnetstore.specs
         {
             Establish c = () =>
             {
-                the_item = new DependencyImplementor();
+               
                 the_single_dependency_factory = fake.an<ICreateASingleDependency>();
+                the_item = new DependencyImplementor(the_single_dependency_factory);
                 all_dependencies = new Dictionary<Type, ICreateASingleDependency>();
                 all_dependencies[typeof(IDependencyToFetch)] = the_single_dependency_factory;
 
@@ -35,7 +36,7 @@ namespace nothinbutdotnetstore.specs
                 result.ShouldBeOfType(typeof(DependencyImplementor));
 
             static IDependencyToFetch result;
-            static Dictionary<Type, ICreateASingleDependency> all_dependencies;
+            static IDictionary<Type, ICreateASingleDependency> all_dependencies;
             static IDependencyToFetch the_item;
             static ICreateASingleDependency the_single_dependency_factory;
         }
@@ -43,10 +44,21 @@ namespace nothinbutdotnetstore.specs
 
     class DependencyImplementor : IDependencyToFetch
     {
+        ICreateASingleDependency factory;
+        public DependencyImplementor(ICreateASingleDependency factory)
+        {
+            this.factory = factory;
+        }
+
+        public ICreateASingleDependency GetFactory()
+        {
+            return factory;
+        }
     }
 
     interface IDependencyToFetch
     {
+        ICreateASingleDependency GetFactory();
     }
 
     
