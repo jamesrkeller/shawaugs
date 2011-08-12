@@ -81,6 +81,7 @@
     <Compile Include="infrastructure\containers\Container.cs" />
     <Compile Include="infrastructure\containers\ContainerResolver .cs" />
     <Compile Include="infrastructure\containers\DependencyResolver.cs" />
+    <Compile Include="infrastructure\containers\ICreateASingleDependency.cs" />
     <Compile Include="infrastructure\containers\IFetchDependencies .cs" />
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="web\application\catalogbrowsing\CatalogBrowsingController.cs" />

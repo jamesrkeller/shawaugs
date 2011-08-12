@@ -14,13 +14,18 @@ namespace nothinbutdotnetstore.specs
         {
         }
 
-        public class when_generating_a_view : concern
+        public class when_fetching_a_dependency : concern
         {
             Establish c = () =>
             {
-                registry = depends.on<IDictionary<Type, object>>();
+                the_item = new DependencyImplementor();
+                the_single_dependency_factory = fake.an<ICreateASingleDependency>();
+                all_dependencies = new Dictionary<Type, ICreateASingleDependency>();
+                all_dependencies[typeof(IDependencyToFetch)] = the_single_dependency_factory;
 
-                registry.setup(reg => reg[typeof(IDependencyToFetch)]).Return(new DependencyImplementor());
+                depends.on(all_dependencies);
+
+                the_single_dependency_factory.setup(x => x.create()).Return(the_item);
             };
 
             Because b = () =>
@@ -30,7 +35,9 @@ namespace nothinbutdotnetstore.specs
                 result.ShouldBeOfType(typeof(DependencyImplementor));
 
             static IDependencyToFetch result;
-            static IDictionary<Type, object> registry;
+            static Dictionary<Type, ICreateASingleDependency> all_dependencies;
+            static IDependencyToFetch the_item;
+            static ICreateASingleDependency the_single_dependency_factory;
         }
     }
 
