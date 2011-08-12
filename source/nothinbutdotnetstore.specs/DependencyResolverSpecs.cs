@@ -32,7 +32,7 @@ namespace nothinbutdotnetstore.specs
                 result = sut.an<IDependencyToFetch>();
 
             It should_provide_an_instance_of_the_requested_depencency = () =>
-                result.ShouldBeOfType(typeof(DependencyImplementor));
+                result.ShouldEqual(the_item);
 
             static IDependencyToFetch result;
             static Dictionary<Type, ICreateASingleDependency> all_dependencies;
