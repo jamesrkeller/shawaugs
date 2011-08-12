@@ -85,6 +85,7 @@
     <Compile Include="infrastructure\containers\DependencyFactoryNotRegisteredException.cs" />
     <Compile Include="infrastructure\containers\DependencyResolver.cs" />
     <Compile Include="infrastructure\containers\ExplicitDependencyFactory.cs" />
+    <Compile Include="infrastructure\containers\GreedyConstructorSelectionStrategy.cs" />
     <Compile Include="infrastructure\containers\ICreateASingleDependency.cs" />
     <Compile Include="infrastructure\containers\IFetchDependencies .cs" />
     <Compile Include="infrastructure\containers\IPickTheConstructorToCreateTheItemWith.cs" />

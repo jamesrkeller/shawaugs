@@ -1,10 +1,12 @@
 using System;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using nothinbutdotnetstore.infrastructure.containers;
+using nothinbutdotnetstore.specs.utility;
 
 namespace nothinbutdotnetstore.specs
 {
@@ -21,24 +23,19 @@ namespace nothinbutdotnetstore.specs
 			Establish c = () =>
 			{
 				type = typeof(OurTypeWithDependencies);
+				expected_ctor = ObjectFactory.expressions.to_target<OurTypeWithDependencies>().
+					get_the_constructor_pointed_at_by(() => new OurTypeWithDependencies(null, null, null));
 			};
 
 			Because b = () =>
 				the_constructor = sut.get_the_applicable_constructor_on(type);
 
 			It should_return_the_item_created_by_the_provided_block = () =>
-				the_constructor.ShouldEqual(type.GetConstructors().OrderBy(c => c.GetParameters().Count()).Last());
+				the_constructor.ShouldEqual(expected_ctor);
 
 			static object the_constructor;
 			static Type type;
-		}
-	}
-
-	public class GreedyConstructorSelectionStrategy : IPickTheConstructorToCreateTheItemWith
-	{
-		public ConstructorInfo get_the_applicable_constructor_on(Type type)
-		{
-			return type.GetConstructors().OrderBy(c => c.GetParameters().Count()).Last();
+			static ConstructorInfo expected_ctor;
 		}
 	}
 }
