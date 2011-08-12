@@ -112,6 +112,7 @@
     <Compile Include="ContainerSpecs.cs" />
     <Compile Include="DependencyResolverSpecs.cs" />
     <Compile Include="ExplicitDependencyFactorySpecs.cs" />
+    <Compile Include="GreedyConstructorSelectionStrategySpecs.cs" />
     <Compile Include="ReportEngineSpecs.cs" />
     <Compile Include="StartUpSpecs.cs" />
     <Compile Include="TemplateRegistrySpecs.cs" />

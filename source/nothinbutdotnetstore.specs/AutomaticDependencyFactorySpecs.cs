@@ -59,30 +59,30 @@ namespace nothinbutdotnetstore.specs
             static ConstructorInfo ctor;
             static IFetchDependencies container;
         }
-
-        public class OurTypeWithDependencies
-        {
-            public IDbConnection connection;
-            public IDbCommand command;
-            public IDataReader reader;
-
-            public OurTypeWithDependencies(IDbConnection connection, IDbCommand command, IDataReader reader)
-            {
-                this.connection = connection;
-                this.command = command;
-                this.reader = reader;
-            }
-
-            public OurTypeWithDependencies(IDbConnection connection, IDbCommand command)
-            {
-                this.connection = connection;
-                this.command = command;
-            }
-
-            public OurTypeWithDependencies(IDbConnection connection)
-            {
-                this.connection = connection;
-            }
-        }
     }
+
+	public class OurTypeWithDependencies
+	{
+		public IDbConnection connection;
+		public IDbCommand command;
+		public IDataReader reader;
+
+		public OurTypeWithDependencies(IDbConnection connection, IDbCommand command, IDataReader reader)
+		{
+			this.connection = connection;
+			this.command = command;
+			this.reader = reader;
+		}
+
+		public OurTypeWithDependencies(IDbConnection connection, IDbCommand command)
+		{
+			this.connection = connection;
+			this.command = command;
+		}
+
+		public OurTypeWithDependencies(IDbConnection connection)
+		{
+			this.connection = connection;
+		}
+	}
 }
