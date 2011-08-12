@@ -14,7 +14,21 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public Dependency an<Dependency>()
         {
-            return (Dependency) factories[typeof(Dependency)].create();
+            try
+            {
+                return (Dependency)factories[typeof(Dependency)].create();
+            }
+            catch (KeyNotFoundException)
+            {
+
+                throw new DependencyFactoryNotRegisteredException(typeof(Dependency));
+               
+            }
+            catch(Exception e)
+            {
+                throw new DependencyCreationException(typeof(Dependency),e);
+            }
+           
         }
     }
 }
