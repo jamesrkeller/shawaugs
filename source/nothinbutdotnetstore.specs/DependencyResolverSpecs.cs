@@ -16,6 +16,32 @@ namespace nothinbutdotnetstore.specs
 
         public class when_fetching_a_dependency : concern
         {
+            public class by_type_and_it_has_the_factory_for_the_dependency : when_fetching_a_dependency
+            {
+                Establish c = () =>
+                {
+                     
+                    the_single_dependency_factory = fake.an<ICreateASingleDependency>();
+                    the_item = new DependencyImplementor();
+                    all_dependencies = new Dictionary<Type, ICreateASingleDependency>();
+                    all_dependencies[typeof(IDependencyToFetch)] = the_single_dependency_factory;
+
+                    depends.on(all_dependencies);
+
+                    the_single_dependency_factory.setup(x => x.create()).Return(the_item);
+                };
+
+                Because b = () =>
+                    result = sut.an(typeof(IDependencyToFetch));
+
+                It should_provide_an_instance_of_the_requested_depencency = () =>
+                    result.ShouldEqual(the_item);
+
+                static object result;
+                static IDictionary<Type, ICreateASingleDependency> all_dependencies;
+                static IDependencyToFetch the_item;
+                static ICreateASingleDependency the_single_dependency_factory;
+            }
             public class and_it_has_the_factory_for_the_dependency : when_fetching_a_dependency
             {
                 Establish c = () =>

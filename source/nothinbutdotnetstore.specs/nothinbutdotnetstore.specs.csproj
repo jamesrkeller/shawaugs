@@ -108,9 +108,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomaticDependencyFactorySpecs.cs" />
     <Compile Include="ContainerSpecs.cs" />
     <Compile Include="DependencyResolverSpecs.cs" />
+    <Compile Include="ExplicitDependencyFactorySpecs.cs" />
     <Compile Include="ReportEngineSpecs.cs" />
+    <Compile Include="StartUpSpecs.cs" />
     <Compile Include="TemplateRegistrySpecs.cs" />
     <Compile Include="TimingProxySpec.cs" />
     <Compile Include="ViewReportSpec.cs" />

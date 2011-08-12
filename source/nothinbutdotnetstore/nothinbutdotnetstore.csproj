@@ -78,14 +78,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="infrastructure\containers\AutomaticDependencyFactory.cs" />
     <Compile Include="infrastructure\containers\Container.cs" />
     <Compile Include="infrastructure\containers\ContainerResolver .cs" />
     <Compile Include="infrastructure\containers\DependencyCreationException.cs" />
     <Compile Include="infrastructure\containers\DependencyFactoryNotRegisteredException.cs" />
     <Compile Include="infrastructure\containers\DependencyResolver.cs" />
+    <Compile Include="infrastructure\containers\ExplicitDependencyFactory.cs" />
     <Compile Include="infrastructure\containers\ICreateASingleDependency.cs" />
     <Compile Include="infrastructure\containers\IFetchDependencies .cs" />
+    <Compile Include="infrastructure\containers\IPickTheConstructorToCreateTheItemWith.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="tasks\startup\StartUp.cs" />
     <Compile Include="web\application\catalogbrowsing\CatalogBrowsingController.cs" />
     <Compile Include="web\application\catalogbrowsing\DispatchingCommand.cs" />
     <Compile Include="web\application\catalogbrowsing\TimingProxy.cs" />

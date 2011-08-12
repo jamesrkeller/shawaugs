@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Web;
+using developwithpassion.specifications.extensions;
 
 namespace nothinbutdotnetstore.specs.utility
 {
@@ -19,6 +22,22 @@ namespace nothinbutdotnetstore.specs.utility
         static HttpResponse create_response()
         {
             return new HttpResponse(new StringWriter());
+        }
+
+        public class expressions
+        {
+            public static ExpressionBuilder<T> to_target<T>()
+            {
+                return new ExpressionBuilder<T>();
+            }
+        }
+
+        public class ExpressionBuilder<ItemToTarget>
+        {
+            public ConstructorInfo get_the_constructor_pointed_at_by(Expression<Func<ItemToTarget>> ctor)
+            {
+                return ctor.Body.downcast_to<NewExpression>().Constructor;
+            }
         }
     }
 }
