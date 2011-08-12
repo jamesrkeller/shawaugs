@@ -62,7 +62,7 @@ namespace nothinbutdotnetstore.specs
                 };
 
                 static IDependencyToFetch result;
-                static Dictionary<Type, ICreateASingleDependency> all_dependencies;
+                static IDictionary<Type, ICreateASingleDependency> all_dependencies;
                 static IDependencyToFetch the_item;
             }
 
